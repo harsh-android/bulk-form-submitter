@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 12px;
+    width: 360px
+}
+
+.container h2 {
+    margin: 6px 0
+}
+
+#fieldsList,
+#mappingList {
+    max-height: 180px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    padding: 8px
+}
+
+#log {
+    margin-top: 8px;
+    white-space: pre-wrap;
+    font-size: 12px
+}
+
+button {
+    margin: 6px 0
+}

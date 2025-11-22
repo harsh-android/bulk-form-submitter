@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Bulk Form Submitter</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h2>Bulk Form Submitter</h2>
+            <div id="status">Open a page with the form and reload it
+                first.</div>
+
+            <div>
+                <button id="detect">Detect form fields</button>
+            </div>
+
+            <div id="fieldsArea" style="display:none">
+                <h3>Detected fields</h3>
+                <div id="fieldsList"></div>
+            </div>
+
+            <hr />
+
+            <div>
+                <label>Upload CSV</label>
+                <input type="file" id="csvFile" accept=".csv,text/csv" />
+            </div>
+
+            <div id="mappingArea" style="display:none">
+                <h3>Map CSV columns to form fields</h3>
+                <div id="mappingList"></div>
+            </div>
+
+            <div id="controls" style="display:none">
+                <label>Delay between submissions (ms): <input id="delay"
+                        type="number" value="1000" /></label>
+                <br />
+                <button id="start">Start bulk submit</button>
+                <button id="stop">Stop</button>
+            </div>
+
+            <div id="log"></div>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
