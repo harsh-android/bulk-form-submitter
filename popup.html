@@ -37,11 +37,24 @@
                 <label>Delay between submissions (ms): <input id="delay"
                         type="number" value="1000" /></label>
                 <br />
+                <label><input id="takeScreenshot" type="checkbox" /> Take
+                    screenshot AFTER each submit</label>
+                <div style="font-size:12px;color:#666;margin-bottom:8px">(This
+                    is <strong>unchecked by default</strong>.)</div>
+                <br>
                 <button id="start">Start bulk submit</button>
                 <button id="stop">Stop</button>
             </div>
 
             <div id="log"></div>
+
+            <div id="screenshotPreview" style="margin-top:8px;display:none">
+                <h4>Last screenshot</h4>
+                <img id="screenshotImg"
+                    style="max-width:100%;border:1px solid #ddd" />
+                <div><a id="downloadShot" href="#"
+                        download="screenshot.png">Download screenshot</a></div>
+            </div>
         </div>
 
         <script src="popup.js"></script>
