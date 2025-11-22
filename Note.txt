@@ -9,9 +9,102 @@ bulk-form-submitter/
 ├─ popup.js
 ├─ contentScript.js
 ├─ styles.css
-├─ icons/
-│  └─ icon48.png
-└─ README.md
+```css
+body{
+  font-family: Inter, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #f5f6fa;
+}
+
+.container{
+  width: 360px;
+  padding: 16px;
+}
+
+.card{
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.title{
+  margin: 0 0 12px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.label{
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 500;
+}
+
+.input{
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.btn{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary{ background: #4a6cf7; color:#fff; }
+.btn.success{ background: #27ae60; color:#fff; }
+.btn.danger{ background: #e74c3c; color:#fff; }
+
+.section{
+  margin-top: 16px;
+}
+
+.divider{
+  height: 1px;
+  background: #e3e3e3;
+  margin: 16px 0;
+}
+
+.list{
+  max-height: 170px;
+  overflow: auto;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.status{
+  padding: 8px;
+  background: #eef3ff;
+  border-left: 4px solid #4a6cf7;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.log{
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  max-height: 160px;
+  overflow: auto;
+}
 ```
 
 ---
@@ -59,39 +152,38 @@ bulk-form-submitter/
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h2>Bulk Form Submitter</h2>
-      <div id="status">Open a page with the form and reload it first.</div>
+    <div class="container card">
+      <h2 class="title">📌 Bulk Form Submitter</h2>
+      <div id="status" class="status">Open a page with the form and reload it first.</div>
 
-      <div>
-        <button id="detect">Detect form fields</button>
+      <button id="detect" class="btn primary">Detect Form Fields</button>
+
+      <div id="fieldsArea" class="section" style="display:none">
+        <h3>Detected Fields</h3>
+        <div id="fieldsList" class="list"></div>
       </div>
 
-      <div id="fieldsArea" style="display:none">
-        <h3>Detected fields</h3>
-        <div id="fieldsList"></div>
+      <div class="divider"></div>
+
+      <div class="section">
+        <label class="label">Upload CSV</label>
+        <input type="file" id="csvFile" accept=".csv,text/csv" class="input" />
       </div>
 
-      <hr />
-
-      <div>
-        <label>Upload CSV</label>
-        <input type="file" id="csvFile" accept=".csv,text/csv" />
+      <div id="mappingArea" class="section" style="display:none">
+        <h3>Map CSV Columns</h3>
+        <div id="mappingList" class="list"></div>
       </div>
 
-      <div id="mappingArea" style="display:none">
-        <h3>Map CSV columns to form fields</h3>
-        <div id="mappingList"></div>
+      <div id="controls" class="section" style="display:none">
+        <label class="label">Delay (ms)</label>
+        <input id="delay" type="number" value="1000" class="input"/>
+
+        <button id="start" class="btn success">Start Bulk Submit</button>
+        <button id="stop" class="btn danger">Stop</button>
       </div>
 
-      <div id="controls" style="display:none">
-        <label>Delay between submissions (ms): <input id="delay" type="number" value="1000"/></label>
-        <br/>
-        <button id="start">Start bulk submit</button>
-        <button id="stop">Stop</button>
-      </div>
-
-      <div id="log"></div>
+      <div id="log" class="log"></div>
     </div>
 
     <script src="popup.js"></script>
