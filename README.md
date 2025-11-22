@@ -17,3 +17,5 @@
 - Many modern sites protect forms with CSRF tokens, captchas, or server-side validations; automated repeated submissions may fail or be blocked.
 - Some forms require multi-step interactions or dynamic JS; basic field assignment may not trigger required client-side logic. You may need to add extra triggers in the content script.
 - Respect site terms of service and legal/regulatory constraints.
+
+using Codespace
