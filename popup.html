@@ -1,62 +1,58 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Bulk Form Submitter</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <div class="container">
-            <h2>Bulk Form Submitter</h2>
-            <div id="status">Open a page with the form and reload it
-                first.</div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bulk Form Submitter</title>
 
-            <div>
-                <button id="detect">Detect form fields</button>
-            </div>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-            <div id="fieldsArea" style="display:none">
-                <h3>Detected fields</h3>
-                <div id="fieldsList"></div>
-            </div>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-light">
+  <div class="container p-3" style="max-width:720px;">
+    <div class="d-flex align-items-center mb-2">
+      <h5 class="mb-0 me-auto">Bulk Form Submitter</h5>
+      <small class="text-muted">v1.3</small>
+    </div>
 
-            <hr />
+    <div class="btn-toolbar mb-3" role="toolbar">
+      <div class="btn-group me-2" role="group">
+        <button id="detect" class="btn btn-primary btn-sm">Detect (auto)</button>
+        <button id="addPage" class="btn btn-outline-secondary btn-sm">Manual Add</button>
+        <button id="clearPages" class="btn btn-outline-danger btn-sm">Clear Pages</button>
+      </div>
+      <div class="btn-group ms-auto" role="group">
+        <button id="run" class="btn btn-success btn-sm">Run Bulk Submit</button>
+        <button id="stop" class="btn btn-secondary btn-sm" disabled>Stop</button>
+      </div>
+    </div>
 
-            <div>
-                <label>Upload CSV</label>
-                <input type="file" id="csvFile" accept=".csv,text/csv" />
-            </div>
+    <div id="pagesArea" class="mb-3">
+      <div class="alert alert-info py-2 mb-0">No pages recorded yet. Click <strong>Detect</strong> to analyze the current form (auto single/multi).</div>
+    </div>
 
-            <div id="mappingArea" style="display:none">
-                <h3>Map CSV columns to form fields</h3>
-                <div id="mappingList"></div>
-            </div>
-
-            <div id="controls" style="display:none">
-                <label>Delay between submissions (ms): <input id="delay"
-                        type="number" value="1000" /></label>
-                <br />
-                <label><input id="takeScreenshot" type="checkbox" /> Take
-                    screenshot AFTER each submit</label>
-                <div style="font-size:12px;color:#666;margin-bottom:8px">(This
-                    is <strong>unchecked by default</strong>.)</div>
-                <br>
-                <button id="start">Start bulk submit</button>
-                <button id="stop">Stop</button>
-            </div>
-
-            <div id="log"></div>
-
-            <div id="screenshotPreview" style="margin-top:8px;display:none">
-                <h4>Last screenshot</h4>
-                <img id="screenshotImg"
-                    style="max-width:100%;border:1px solid #ddd" />
-                <div><a id="downloadShot" href="#"
-                        download="screenshot.png">Download screenshot</a></div>
-            </div>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="mb-2">
+          <label class="form-label mb-1">CSV file</label>
+          <input id="csvFile" type="file" accept=".csv" class="form-control form-control-sm" />
+          <small id="csvInfo" class="form-text text-muted">Upload a CSV with header row.</small>
         </div>
 
-        <script src="popup.js"></script>
-    </body>
+        <div id="mappingArea" class="mt-3 text-muted">Upload CSV and record pages to enable mapping UI.</div>
+
+        <div class="form-check form-check-inline mt-3">
+          <input id="screenshotOpt" class="form-check-input" type="checkbox" />
+          <label class="form-check-label">Capture screenshot after submit (off by default)</label>
+        </div>
+      </div>
+    </div>
+
+    <div id="log" class="border bg-white p-2" style="height:160px; overflow:auto; font-family:monospace; font-size:13px;"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
 </html>

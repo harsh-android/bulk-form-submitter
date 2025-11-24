@@ -1,19 +1,12 @@
-# Bulk Form Submitter — Chrome Extension
-
-## Install
-1. Save the files in a folder.
-2. Go to chrome://extensions, enable Developer mode.
-3. Click "Load unpacked" and select the folder.
-
-## How to use
-1. Open the target page that contains the form and reload it.
-2. Click the extension icon (popup will open).
-3. Click "Detect form fields" — the extension will show detected fields (selector, name, id).
-4. Upload a CSV with header row. (CSV should have column names matching the values you want to map.)
-5. Map CSV columns to form fields in the popup.
-6. Click Start. The extension will fill and submit for each CSV row with the specified delay.
-
-## Important notes & limitations
-- Many modern sites protect forms with CSRF tokens, captchas, or server-side validations; automated repeated submissions may fail or be blocked.
-- Some forms require multi-step interactions or dynamic JS; basic field assignment may not trigger required client-side logic. You may need to add extra triggers in the content script.
-- Respect site terms of service and legal/regulatory constraints.
+Usage:
+1. Load extension (Developer mode -> Load unpacked) and select extension folder.
+2. Open the first step of form.
+3a. For manual: click Detect -> Add Page. Navigate to next step, repeat Detect -> Add Page.
+3b. For automatic: click Scan Flow (safe). Extension will try to record up to 10 steps without submitting real data.
+4. Upload CSV (header row required).
+5. Map CSV columns to detected fields in the mapping UI (dropdowns).
+6. Click Run Bulk Submit. Use Stop to interrupt.
+7. Screenshot option runs only after a row submission; the minimal sample puts a placeholder. To enable real screenshots we can add capture + save logic in background service worker.
+Notes:
+- Complex single-page JS wizards may need manual mapping per step.
+- Scan Flow is heuristic — test on a copy / dev environment first.
