@@ -1,9 +1,12 @@
-chrome.runtime.onMessage.addListener((msg, sender, sendResp) => {
-    if (msg.type === 'captureScreenshot') {
-        chrome.tabs.captureVisibleTab(sender.tab.windowId, { format: 'png' }, (dataUrl) => {
-            if (chrome.runtime.lastError) sendResp({ ok: false, error: chrome.runtime.lastError.message });
-            else sendResp({ ok: true, dataUrl });
-        });
-        return true; // async
-    }
+// background.js — inject content script on demand (useful while developing)
+chrome.action.onClicked.addListener(async (tab) => {
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ['contentScript.js']
+    });
+    console.log('[ext] contentScript injected to tab', tab.id);
+  } catch (e) {
+    console.error('[ext] inject failed', e);
+  }
 });
